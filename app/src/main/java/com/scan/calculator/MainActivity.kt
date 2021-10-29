@@ -4,6 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import com.scan.calculator.Calculate.Companion.add
+import com.scan.calculator.Calculate.Companion.divide
+import com.scan.calculator.Calculate.Companion.minus
+import com.scan.calculator.Calculate.Companion.multiply
 import com.scan.calculator.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -56,7 +60,6 @@ class MainActivity : AppCompatActivity() {
             }
         })
         binding.equal.setOnClickListener {
-
             resultValue = calculate(resultValue, binding.inputValue.text.toString().toInt())
             operation = ""
             binding.equal.isClickable = false
@@ -66,10 +69,10 @@ class MainActivity : AppCompatActivity() {
     }
     private fun calculate(firstNum: Int, secNum:Int ): Int {
         return when(operation) {
-            "+" -> firstNum+secNum
-            "-" -> firstNum-secNum
-            "*" -> firstNum*secNum
-            "/" -> firstNum/secNum
+            "+" -> add(firstNum,secNum)
+            "-" -> minus(firstNum,secNum)
+            "*" -> multiply(firstNum,secNum)
+            "/" -> divide(firstNum,secNum)
             else -> firstNum
         }
     }
