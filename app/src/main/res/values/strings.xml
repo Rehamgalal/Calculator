@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Calculator</string>
+    <string name="result">Result =</string>
+    <string name="input_hint">Please enter the second operand</string>
+    <string name="undo">Undo</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="multiply">*</string>
+    <string name="division">/</string>
+    <string name="equal">=</string>
+    <string name="redo">Redo</string>
+</resources>
