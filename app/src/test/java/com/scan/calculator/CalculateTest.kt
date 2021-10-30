@@ -1,5 +1,6 @@
 package com.scan.calculator
 
+import com.scan.calculator.utils.Calculate
 import junit.framework.TestCase.assertEquals
 import org.junit.Test
 

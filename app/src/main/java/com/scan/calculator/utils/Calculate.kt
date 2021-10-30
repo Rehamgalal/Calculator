@@ -1,4 +1,4 @@
-package com.scan.calculator
+package com.scan.calculator.utils
 
 class Calculate {
 

@@ -4,25 +4,37 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import com.scan.calculator.Calculate.Companion.add
-import com.scan.calculator.Calculate.Companion.divide
-import com.scan.calculator.Calculate.Companion.minus
-import com.scan.calculator.Calculate.Companion.multiply
+import android.widget.GridLayout
+import androidx.recyclerview.widget.GridLayoutManager
+import com.scan.calculator.adpater.OperationAdapter
+import com.scan.calculator.utils.Calculate.Companion.add
+import com.scan.calculator.utils.Calculate.Companion.divide
+import com.scan.calculator.utils.Calculate.Companion.minus
+import com.scan.calculator.utils.Calculate.Companion.multiply
 import com.scan.calculator.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private var operation:String = ""
-    private var resultValue:Int = 0
+    private var resultValue = 0
+    private var undoCounter = 0
+    private var redoCounter = 0
+    private lateinit var adapter:OperationAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        setupRecyclerView()
         onClick()
     }
 
+    private fun setupRecyclerView() {
+        binding.recyclerView.layoutManager = GridLayoutManager(this, 5)
+        adapter = OperationAdapter()
+        binding.recyclerView.adapter = adapter
+    }
     private fun onClick() {
         binding.plus.setOnClickListener {
             operation = "+"
@@ -61,6 +73,7 @@ class MainActivity : AppCompatActivity() {
         })
         binding.equal.setOnClickListener {
             resultValue = calculate(resultValue, binding.inputValue.text.toString().toInt())
+            adapter.addItem(operation,resultValue)
             operation = ""
             binding.equal.isClickable = false
             binding.resultValue.text = resultValue.toString()
