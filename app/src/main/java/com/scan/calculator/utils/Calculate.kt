@@ -4,9 +4,6 @@ class Calculate {
 
     companion object {
 
-        var resultValue = 0
-        var undoCounter = 0
-        var redoCounter = 0
         var operationCounter = 0
 
         fun add(firstNum: Int, secNum:Int) : Int {
