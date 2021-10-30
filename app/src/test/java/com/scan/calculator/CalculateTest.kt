@@ -23,4 +23,9 @@ class CalculateTest {
     fun divide_isCorrect() {
         assertEquals(0, Calculate.divide(0,5))
     }
+
+    @Test
+    fun redoUndo_isCorrect(){
+        assertEquals(Pair("-",5),Calculate.reverse(6,Pair("+",1)))
+    }
 }
