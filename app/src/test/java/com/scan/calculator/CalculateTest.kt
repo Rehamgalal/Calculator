@@ -25,6 +25,10 @@ class CalculateTest {
     }
 
     @Test
+    fun calculate_isCorrect() {
+        assertEquals(4,Calculate.calculate(10,6,"-"))
+    }
+    @Test
     fun redoUndo_isCorrect(){
         assertEquals(Pair("-",5),Calculate.reverse(6,Pair("+",1)))
     }

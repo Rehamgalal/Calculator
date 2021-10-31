@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'jacoco'
+    id 'org.jetbrains.dokka'
 }
 
 android {
@@ -21,6 +23,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            testCoverageEnabled true
+        }
+        debug {
+            testCoverageEnabled true
         }
     }
     compileOptions {
@@ -30,11 +36,31 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-
+    testOptions {
+        unitTests.all {
+            jacoco {
+                includeNoLocationClasses = true
+            }
+        }
+        unitTests.returnDefaultValues = true
+    }
     buildFeatures {
         viewBinding = true
     }
+    jacoco {
+        version = '0.7.9'
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+    }
 }
+
+sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
+    test.java.srcDirs += 'src/test/kotlin'
+}
+
 
 
 dependencies {

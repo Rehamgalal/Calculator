@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() , OnClickListener{
         onClick()
     }
 
+
     private fun setupRecyclerView() {
         binding.recyclerView.layoutManager = GridLayoutManager(this, 4)
         adapter = OperationAdapter()
